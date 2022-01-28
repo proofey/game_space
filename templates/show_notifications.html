@@ -1,0 +1,36 @@
+<a class="dropdown-toggle nav-link fw-bold fs-4 nmc remove-arrow mx-1" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Notifications 
+    {% if notifications %}
+        <span class="badge bg-danger" >{{ notifications.count }}</span>
+    {% endif %}
+</a>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% for notification in notifications %}
+        {% if notification.post %}
+            {% if notification.notification_type == 1 %}
+                <div class="dropdown-item">
+                    <a href="{% url 'post-notification' notification.post.pk notification.pk %}">@{{ notification.from_user }} liked your post</a>
+                    <span>&times;</span>
+                </div>
+            {% elif notification.notification_type == 2 %}
+                <div class="dropdown-item">
+                    <a href="{% url 'post-notification' notification.post.pk notification.pk %}">@{{ notification.from_user }} commented on your post</a>
+                    <span>&times;</span>
+                </div>
+            {% endif %}
+        {% else %}
+            {% if notification.notification_type == 1 %}
+                <div class="dropdown-item">
+                    <a href="{% url 'post-notification' notification.comment.post.pk notification.pk %}">@{{ notification.from_user }} liked your comment</a>
+                    <span>&times;</span>
+                </div>
+            {% elif notification.notification_type == 2 %}
+                <div class="dropdown-item">
+                    <a href="{% url 'post-notification' notification.comment.post.pk notification.pk %}">@{{ notification.from_user }} replied to your comment</a>
+                    <span>&times;</span>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
+

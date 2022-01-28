@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <div class="row">
+                <div class="dropdown mx-5 my-2 col-8 col-md-10 col-lg-11 col-xl-3 shadowbox text-center nav-link b">
+                    <a class="text-center nav-link b" 
+                    type="button" id="categoriesMenu" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                      <h1>Categories</h1>
+                    </a>
+                    <ul class="dropdown-menu text-center bg-none b" aria-labelledby="categoriesMenu">
+                        {% for categorie in categories %}
+                            <li><a class="dropdown-item fs-3 shadowbox b" href="{{ categorie.get_absolute_url }}">{{ categorie.name }}</a></li>
+                        {% endfor %}
+                        <li><a class="dropdown-item fs-3 shadowbox b" href="{% url 'forum-page' forum.name %}">all posts</a></li>
+                    </ul>
+                </div>
+                <div class="mx-5 my-2 col-8 col-md-10 col-lg-11 col-xl-3 shadowbox text-center nav-link b">
+                    <a class="text-center nav-link b" href="{% url 'top-posts' forum.name %}"><h1>TOP Posts</h1></a>
+                </div>
+                <div class="mx-5 my-2 col-8 col-md-10 col-lg-11 col-xl-3 shadowbox text-center nav-link b">
+                    <a class="text-center nav-link b" href="{% url 'new-post' forum.name %}"><h1>POST</h1></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row b my-3 shadowbox">
+                <div class="col-4 col-md-7 vl">
+                    <span>Topic</span>
+                </div>
+                <div class="col-3 col-md-2 vl">
+                    <span>Author</span>
+                </div>
+                <div class="col-2 col-md-1 vl">
+                    <span>Rep.</span>
+                </div>
+                <div class="col-2 col-md-1">
+                    <span>Date</span>
+                </div>
+            </div>
+        </div>
+        {% for post in posts %}
+        <div class="col-12">
+            <div class="row b mb-1 shadowbox">
+                <div class="col-4 col-md-7 vl rot">
+                    <a class="b" href="{{ post.get_absolute_url }}">{{ post.topic }}</a>
+                </div>
+                <div class="col-3 col-md-2 vl rot">
+                    <span>{{ post.author.user.profile.get_name }}</span>
+                </div>
+                <div class="col-2 col-md-1 vl text-center">
+                    <span>{{ post.comment.count }}</span>
+                </div>
+                <div class="col-2 col-md-1">
+                    <span>{{ post.created|date:"j.n.y" }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

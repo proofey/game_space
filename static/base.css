@@ -1,0 +1,47 @@
+                /* Custom tweaks */
+
+.shadowbox{
+    box-shadow: 0px 6px 14px -1px rgba(0,0,0,0.77);
+    border-radius: 30px;
+}
+
+.shadowbox2{
+    box-shadow: 0px 6px 14px -1px rgba(0,0,0,0.77);
+}
+
+.myrounded{
+    border-radius: 30px;
+}
+
+.b{
+    background-color: darkgray;
+    color: white;
+    text-decoration: none;
+}
+.b:hover{
+    color: rgb(187, 64, 64);
+}
+
+.bg-none{
+    background: none;
+    border: none;
+}
+.vl{
+    border-right: solid;
+}
+/* remove overflow text */
+.rot{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* nav menu color */
+.nmc{
+    color: grey;
+}
+.nmc:hover{
+    color: black;
+}
+.remove-arrow::after {
+    content: none;
+}

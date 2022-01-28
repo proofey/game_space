@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+    {% include 'forum/forum_style.html' %}
+    <link rel="stylesheet" href="{% static 'post/style.css' %}">
+{% endblock style %}
+
+
+{% block title %}
+    Comment
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'post/post_details_content.html' %}
+
+<div class="modal fade" id="commentModal" aria-labelledby="commentModalLabel" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadowbox new-post">
+            <div class="modal-body">
+                <form action="" method="POST" id="commentForm" class="text-center fs-5 fw-bolder">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label }}
+                        <hr>
+                        {{ field }}
+                    {% endfor %}
+                    <button type="submit" class="btn btn-lg btn-success mt-3">Comment</button>
+                    <a class="btn btn-lg btn-danger mt-3" href="{{ post.get_absolute_url }}">Cancel</a>
+                </form>
+            </div>     
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block js %}
+    <script src="{% static 'post/javascript.js' %}"></script>
+{% endblock js %}

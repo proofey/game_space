@@ -1,0 +1,20 @@
+.modal-content{
+    background-image: url(../../static/images/g2.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}
+
+body{
+    background-image: url(../../static/images/g2.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}
+
+.navbar-web{
+    background-image: url(../../static/images/g2.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}

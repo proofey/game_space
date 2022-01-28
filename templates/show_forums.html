@@ -1,0 +1,8 @@
+<a class="nav-link dropdown-toggle fw-bold fs-4 nmc mx-1" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Forums
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for forum in forums %}
+            <li><a class="dropdown-item fw-bold fs-4" href="{{ forum.get_absolute_url }}">{{ forum.name }}</a></li>
+        {% endfor %}
+    </ul>

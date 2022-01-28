@@ -1,0 +1,21 @@
+.post-details, .new-post{
+    background-color: darkgray;
+    color: rgb(187, 64, 64);
+}
+.tags{
+    color: rgb(187, 64, 64);
+    text-decoration: none;
+}
+.tags:hover{
+    color: whitesmoke;
+}
+.modal-content{
+    background-color: darkgray;
+}
+/* nav menu color */
+.nmc{
+    color: whitesmoke;
+}
+.nmc:hover{
+    color: darkgray;
+}

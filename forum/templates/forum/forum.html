@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+    {% include 'forum/forum_style.html' %}
+    <link rel="stylesheet" href="{% static 'forum/style.css' %}">
+{% endblock style %}
+
+
+{% block title %}
+    Dota2
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'forum/forum_content.html' %}
+
+{% endblock content %}
+
+
+{% block js %}
+    <script src="#"></script>
+{% endblock js %}

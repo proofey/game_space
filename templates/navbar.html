@@ -1,0 +1,52 @@
+{% load static %}
+{% load thumbnail %}
+{% load custom_tags %}
+
+<nav class="navbar navbar-expand-lg sticky-top shadowbox2 navbar-web">
+    <a class="navbar-brand nmc fs-3" href="{% url 'home-page' %}">Game Space</a>
+
+    {% if request.user.is_authenticated %}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#websiteNavbar" aria-controls="websiteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon d-flex">
+            <img src="{% static '../static/images/navbarmenu.svg' %}" alt="">
+        </span>
+    </button>
+    <div class="collapse navbar-collapse" id="websiteNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link fw-bold fs-4 nmc mx-1" aria-current="page" href="{% url 'home-page' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold fs-4 nmc mx-1" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item dropdown">
+                {% show_forums %}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold fs-4 nmc mx-1" href="#">Messages</a>
+            </li>
+            <li class="nav-item dropdown" id="notifications">
+                {% show_notifications %}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold fs-4 nmc mx-1" href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+        <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+
+    {% else %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="list-item me-2">
+                <a class="nav-link fw-bold fs-4 nmc" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="list-item">
+                <a class="nav-link fw-bold fs-4 nmc" href="{% url 'registration' %}">Sign Up</a>
+            </li>
+        </ul>
+    {% endif %}
+
+    </div>
+</nav>

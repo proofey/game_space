@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block style %}
+    {% include 'forum/forum_style.html' %}
+    <link rel="stylesheet" href="{% static 'post/style.css' %}">
+{% endblock style %}
+
+
+{% block title %}
+    Post Details 
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'post/post_details_content.html' %}
+
+{% endblock content %}
+
+
+{% block js %}
+    <script src="{% static 'post/javascript.js' %}"></script>
+{% endblock js %}

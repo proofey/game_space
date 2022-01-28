@@ -1,0 +1,8 @@
+/* nav menu color */
+.nmc{
+    color: whitesmoke;
+}
+.nmc:hover{
+    color: darkgray;
+}
+

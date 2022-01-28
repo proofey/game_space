@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+{% endblock style %}
+
+{% block title %}
+Game Space
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-12 d-flex justify-content-center mt-5 shadowbox c">
+                <h1>Welcome to Game Space</h1>
+            </div>
+            {% for intro in intros %}
+            <div class="col col-12 mt-5 shadowbox c"> 
+                {% thumbnail intro.image "350x200" crop="center" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="my-2 myrounded img-thumbnail">
+                {% endthumbnail %}
+                    <h3>{{ intro.name }}</h3>
+                <div>
+                    <p>{{ intro.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
+

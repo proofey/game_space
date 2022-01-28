@@ -1,0 +1,11 @@
+{% load static %}
+
+{% if forum.name == 'Dota2' %}
+    <link rel="stylesheet" href="{% static 'forum/dota2.css' %}">
+{% elif forum.name == 'League of Legends' %}
+    <link rel="stylesheet" href="{% static 'forum/league_of_legends.css' %}">
+{% elif forum.name == 'World of Warcraft' %}
+    <link rel="stylesheet" href="{% static 'forum/world_of_warcraft.css' %}">
+{% elif forum.name == 'CS:GO' %}
+    <link rel="stylesheet" href="{% static 'forum/csgo.css' %}">
+{% endif %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" data-bs-backdrop="static">                       
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadowbox">
+            <div class="modal-header d-flex justify-content-center" id="modalHeader">
+                <h5 class="modal-title" id="registrationModalLabel">Welcome to Game Space</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'registration' %}" method="POST" class="text-center" id="registration-form">
+                    {% csrf_token %}
+                    {{ registration_form|crispy }}
+                    <button type="submit" class="btn btn-success mt-1">Sign Up</button>
+                </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <p>If you already have Account you can Sign In <a href="{% url 'login' %}">here</a></p>
+                <p><a class="btn btn-danger" href="{% url 'home-page' %}">Return to Home Page</a></p>
+            </div>
+        </div>
+    </div>                         
+</div>
+
+{% endblock content %}
+
+
+{% block js %}
+
+<script src="{% static 'website/javascript.js' %}"></script>
+
+{% endblock js %}

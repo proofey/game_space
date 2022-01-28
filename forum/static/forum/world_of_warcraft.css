@@ -1,0 +1,13 @@
+body{
+    background-image: url(../../static/images/world_of_warcraft.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}
+
+.navbar-web{
+    background-image: url(../../static/images/world_of_warcraft.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}

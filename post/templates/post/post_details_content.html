@@ -1,0 +1,117 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="container">
+    <div class="row mt-5 shadowbox post-details border border-danger border-3">
+        <div class="col-12 col-lg-4 col-xl-3 text-center">
+            {% thumbnail post.author.user.profile.image "300x300" crop="center" as im %}
+                <img class="rounded-circle mt-2" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+            <h2 class="my-2">{{ post.author.get_name }}</h2>
+            <h6>posted on: {{ post.created }}</h6>
+            {% if post.show_updated > 1 %}
+                <h6>updated on: {{ post.updated }}</h6>
+            {% endif %}
+            <hr>
+            <span>Categories:</span>
+            {% for categorie in categories %}
+                <a class="tags" href="{{ categorie.get_absolute_url }}">{{ categorie }}</a>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-lg-8 col-xl-9">
+            <hr>
+            <h4 class="text-center mt-2">{{ post.topic }}</h4>
+            <hr>
+            <br>
+            <br>
+            <h5 class="text-dark ms-5">{{ post.content }}</h5>
+        </div>
+        <div class="col text-center">
+            <hr>
+            <a class="btn btn-success mb-3" href="{% url 'comment-post' forum.name post.pk %}">Comment</a>
+            <a class="btn btn-secondary mb-3" href="{{ forum.get_absolute_url }}">Back to Posts</a>
+            {% if user == post.author.user %}
+                <a class="btn btn-primary mb-3" href="{% url 'update-post' forum.name post.pk %}">Edit</a>
+                <a class="btn btn-danger mb-3" href="{% url 'delete-post' forum.name post.pk %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% for comment in comments %}
+
+    <div class="row mt-3 shadowbox post-details">
+        <div class="col-12 col-lg-4 col-xl-3 text-center">
+            {% thumbnail comment.author.user.profile.image "200x200" crop="center" as im %}
+                <img class="rounded-circle mt-2" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+            <h2 class="my-2">{{ comment.author.get_name }}</h2>
+            <h6>posted on: {{ comment.created }}</h6>
+            {% if comment.show_updated > 2 %}
+                <h6>updated on: {{ comment.updated }}</h6>
+            {% endif %}
+        </div>
+        <div class="col-12 col-lg-8 col-xl-9">
+            <hr>
+            <br>
+            <br>
+            <h5 class="text-dark ms-5">{{ comment.content }}</h5>
+        </div>
+        <div class="col text-center">
+            <hr>
+            <a class="btn btn-success mb-3" href="{% url 'new-reply' forum.name comment.pk %}">Reply</a>
+            {% if user == comment.author.user %}
+                <a class="btn btn-primary mb-3" href="{% url 'update-comment' forum.name comment.pk %}">Edit</a>
+                <a class="btn btn-danger mb-3" href="{% url 'delete-comment' forum.name comment.pk %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+        {% if comment.reply_set.count > 0 %}
+
+        <div class="row ms-5">
+            <div class="col-12 post-details shadowbox mt-1 text-center">
+                <span>Replies ({{ comment.reply_set.count }})</span>
+            </div>
+        </div>
+
+            {% for reply in comment.reply_set.all %}
+
+            <div class="ms-5" id="showReplies">
+                <div class="row mt-1 shadowbox post-details">
+                    <div class="col-12 col-lg-4 col-xl-3 text-center">
+                        {% thumbnail reply.author.user.profile.image "200x200" crop="center" as im %}
+                            <img class="rounded-circle mt-2" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        <h2 class="my-2">{{ reply.author.get_name }}</h2>
+                        <h6>posted on: {{ reply.created }} </h6>
+                        {% if reply.show_updated > 2 %}
+                            <h6>updated on: {{ reply.updated }}</h6>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-lg-8 col-xl-9">
+                        <hr>
+                        <h4 class="text-center mt-2">Reply to: "{{ comment.content }}"</h4>
+                        <hr>
+                        <br>
+                        <br>
+                        <h5 class="text-dark ms-5">{{ reply.content }}</h5>
+                    </div>
+                    <div class="col text-center">
+                        <hr>
+                        {% if user == reply.author.user %}
+                            <a class="btn btn-primary mb-3" href="{% url 'update-reply' forum.name reply.pk %}">Edit</a>
+                            <a class="btn btn-danger mb-3" href="{% url 'delete-reply' forum.name reply.pk %}">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>
