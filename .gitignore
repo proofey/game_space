@@ -1,11 +1,1 @@
-website/__pycache__
-website/migrations
-user_profile/__pycache__
-user_profile/migrations
-post/__pycache__
-post/migrations
-game_space/__pycache__
-forum/__pycache__
-forum/migrations
-media/cache
-template_tags/__pycache__
+*.pyc
