@@ -21,7 +21,7 @@ def new_post(request, forum_name):
             obj.save()
             form.save_m2m()
             messages.success(request, 'Post successful!')
-            return redirect('home-page')
+            return redirect(reverse('forum-page', args=(forum_name,)))
     else:
         form = PostForm()
         form.fields['categories'].queryset = categories
@@ -62,7 +62,7 @@ def update_post(request, forum_name,id):
             obj.save()
             form.save_m2m()
             messages.success(request, 'Post updated!')
-            return redirect('home-page')
+            return redirect(reverse('post-details', args=(forum_name, id,)))
     else:
         form = PostUpdateForm(instance=post)
         form.fields['categories'].queryset = categories
@@ -84,7 +84,7 @@ def delete_post(request, forum_name, id):
     if request.method == "POST" and user.is_authenticated:
         post.delete()
         messages.success(request, 'Post deleted!')
-        return redirect('home-page')
+        return redirect(reverse('forum-page', args=(forum_name,)))
     
     return render(request, 'post/delete_post.html', {
         'post': post,
@@ -112,7 +112,7 @@ def new_comment(request, forum_name, id):
                 notification = Notification.objects.create(notification_type=2, to_user=post.author.user, from_user=request.user , post=post)
 
             messages.success(request, "You successfuly posted a comment")
-            return redirect('home-page')
+            return redirect(reverse('post-details', args=(forum_name, id,)))
     else:
         form = CommentForm()
 
@@ -140,7 +140,7 @@ def update_comment(request, forum_name, id):
             obj.post = post
             obj.save()
             messages.success(request, 'Comment updated!')
-            return redirect('home-page')
+            return redirect(reverse('post-details', args=(forum_name, post.pk,)))
     else:
         form = CommentUpdateForm(instance=comment)
     
@@ -161,7 +161,7 @@ def delete_comment(request, forum_name, id):
     if request.method == "POST" and request.user.is_authenticated:
         comment.delete()
         messages.success(request, 'Comment deleted!')
-        return redirect('home-page')
+        return redirect(reverse('post-details', args=(forum_name, post.pk,)))
     
     return render(request, 'post/delete_comment.html', {
         'post': post,
@@ -188,7 +188,7 @@ def new_reply(request, forum_name, id):
                 notification = Notification.objects.create(notification_type=2, to_user=comment.author.user, from_user=request.user, comment=comment)
 
             messages.success(request, "You successfuly posted a reply")
-            return redirect('home-page')
+            return redirect(reverse('post-details', args=(forum_name, post.pk,)))
     else:
         form = ReplyForm()
 
@@ -215,7 +215,7 @@ def update_reply(request, forum_name, id):
             obj.author = request.user.profile
             obj.save()
             messages.success(request, "Reply updated!")
-            return redirect('home-page')
+            return redirect(reverse('post-details', args=(forum_name, post.pk,)))
     
     else:
         form = ReplyUpdateForm(instance=reply)
@@ -237,7 +237,7 @@ def delete_reply(request, forum_name, id):
     if request.method == "POST" and request.user.is_authenticated:
         reply.delete()
         messages.success(request, "Reply deleted!")
-        return redirect('home-page')
+        return redirect(reverse('post-details', args=(forum_name, post.pk,)))
 
     return render(request, 'post/delete_reply.html', {
         'post': post,
