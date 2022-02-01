@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('user_profile.urls')),
     path('', include('forum.urls')),
     path('', include('post.urls')),
-    path('', include('messages.urls'))
+    path('', include('user_messages.urls'))
 ]
 
 
