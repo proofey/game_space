@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'website',
     'user_profile',
     'post',
-    'forum'
+    'forum',
+    'messages'
 ]
 
 MIDDLEWARE = [

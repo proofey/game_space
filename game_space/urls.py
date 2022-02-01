@@ -23,7 +23,8 @@ urlpatterns = [
     path('', include('website.urls')),
     path('', include('user_profile.urls')),
     path('', include('forum.urls')),
-    path('', include('post.urls'))
+    path('', include('post.urls')),
+    path('', include('messages.urls'))
 ]
 
 
