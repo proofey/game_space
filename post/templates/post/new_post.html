@@ -30,7 +30,7 @@
                         {{ field }}
                     {% endfor %}
                     <button type="submit" class="btn btn-lg btn-success mt-3">Post</button>
-                    <a class="btn btn-lg btn-danger mt-3" href="#">Cancel</a>
+                    <a class="btn btn-lg btn-danger mt-3" href="{{ forum.get_absolute_url }}">Cancel</a>
                 </form>
             </div>     
         </div>
